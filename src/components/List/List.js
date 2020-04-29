@@ -1,14 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+
+const ListWrapper = styled.ul`
+  list-style: none;
+  text-align: left;
+  padding: 0;
+`;
+
+const ListItem = styled.li`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const Label = styled.span`
+  font-weight: bolder;
+`;
 
 const List = ({ items }) => (
-  <ul>
+  <ListWrapper>
     {items.map(item => (
-      <li key={item.label}>
-        <strong>{item.label}:</strong> {item.value}
-      </li>
+      <ListItem key={item.label}>
+        <Label>{item.label}:</Label> {item.value}
+      </ListItem>
     ))}
-  </ul>
+  </ListWrapper>
 );
 
 List.propTypes = {
