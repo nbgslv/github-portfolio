@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import Link from '../components/Link/Link';
+import List from '../components/List/List';
+import './Profile.css';
 
 class Profile extends Component {
   constructor() {
@@ -24,19 +27,22 @@ class Profile extends Component {
   render() {
     const { data, loading } = this.state;
 
+    const items = [
+      /* eslint-disable-next-line jsx-a11y/anchor-is-valid */
+      { label: 'html_url', value: <Link url={data.html_url} title="Github URL" /> },
+      { label: 'repos_url', value: data.repos_url },
+      { label: 'name', value: data.name },
+      { label: 'company', value: data.company },
+      { label: 'location', value: data.location },
+      { label: 'email', value: data.email },
+      { label: 'bio', value: data.bio },
+    ];
+
     if (loading) return <div>Loading...</div>;
     return (
-      <div>
-        <ul>
-          <li>avatar_url: {data.avatar_url}</li>
-          <li>html_url: {data.html_url}</li>
-          <li>repos_url: {data.repos_url}</li>
-          <li>name: {data.name}</li>
-          <li>company: {data.company}</li>
-          <li>location: {data.location}</li>
-          <li>email: {data.email}</li>
-          <li>bio: {data.bio}</li>
-        </ul>
+      <div className="Profile-container">
+        <img className="Profile-avatar" src={data.avatar_url} alt="Avatar" />
+        <List items={items} />
       </div>
     );
   }
